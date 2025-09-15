@@ -33,6 +33,14 @@ npm run dev
 
 3. Abre tu navegador en `http://localhost:4321`
 
+## Despliegue en Netlify
+
+El proyecto está configurado para desplegarse automáticamente en Netlify con:
+
+- **Adaptador Netlify:** Para funcionalidad de servidor
+- **Rutas dinámicas:** Soporte para `/contact-demo/[contactId]`
+- **API externa:** Integración con Creatio CRM
+
 ## Scripts Disponibles
 
 - `npm run dev` - Inicia el servidor de desarrollo
