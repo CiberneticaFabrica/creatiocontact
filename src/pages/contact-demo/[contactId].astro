@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactInfo from '../../components/ContactInfo.astro';
+
+// Obtener el contactId de la URL
+const { contactId } = Astro.params;
+
+// Si no hay contactId en la URL, redirigir a la página principal
+if (!contactId) {
+  return Astro.redirect('/');
+}
+---
+
+<Layout title={`Contact Information`}>
+  <main>
+    <ContactInfo 
+      contactId={contactId} 
+      includePhoto={true}
+      editable={true}
+    />
+  </main>
+</Layout>
+
