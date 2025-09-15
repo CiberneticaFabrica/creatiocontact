@@ -1,0 +1,58 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Formulario de contacto simple con Astro" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #f5f5f5;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: transparent;
+    padding: 0;
+  }
+
+  h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  p {
+    color: #666;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+</style>
