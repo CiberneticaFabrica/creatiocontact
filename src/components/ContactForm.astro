@@ -131,40 +131,523 @@
       </div>
     </div>
 
+    <!-- Pestañas para organizar los campos -->
+    <div class="tabs-container">
+      <div class="tabs-nav">
+        <button type="button" class="tab-btn active" data-tab="personal">Información Personal</button>
+        <button type="button" class="tab-btn" data-tab="professional">Información Profesional</button>
+        <button type="button" class="tab-btn" data-tab="contact">Contacto</button>
+        <button type="button" class="tab-btn" data-tab="documents">Documentos</button>
+      </div>
+
+      <!-- Tab Personal -->
+      <div class="tab-content active" id="tab-personal">
+
+        <div class="form-row">
     <div class="form-group">
-      <label for="name">Name: e.g. John Smith</label>
+            <label for="name">Nombre completo *</label>
       <input 
         type="text" 
         id="name" 
         name="name" 
         required 
-        placeholder="Enter your full name"
-      />
+              placeholder="Ej: Juan Pérez García"
+            />
+          </div>
+          <div class="form-group">
+            <label for="dear">Nombre del destinatario</label>
+            <input 
+              type="text" 
+              id="dear" 
+              name="dear" 
+              placeholder="Ej: Juan"
+            />
+          </div>
     </div>
 
+        <div class="form-row">
     <div class="form-group">
-      <label for="phone">Phone: e.g. 07991123 456</label>
+            <label for="birthDate">Fecha de nacimiento *</label>
+      <input 
+              type="date" 
+              id="birthDate" 
+              name="birthDate" 
+        required 
+      />
+    </div>
+    <div class="form-group">
+            <label for="placeOfBirth">Lugar de nacimiento</label>
+      <input 
+              type="text" 
+              id="placeOfBirth" 
+              name="placeOfBirth" 
+              placeholder="Ej: Ciudad de México"
+            />
+          </div>
+    </div>
+
+        <div class="form-row">
+    <div class="form-group">
+            <label for="gender">Género *</label>
+            <select id="gender" name="gender" required>
+              <option value="">Selecciona tu género</option>
+              <option value="eeac42ee-65b6-df11-831a-001d60e938c6">Masculino</option>
+              <option value="fc2483f8-65b6-df11-831a-001d60e938c6">Femenino</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="maritalStatus">Estado civil *</label>
+            <select id="maritalStatus" name="maritalStatus" required>
+              <option value="">Selecciona tu estado civil</option>
+              <option value="81745fc0-0335-4a57-b32d-10780f729764">Unión civil/pareja de hecho</option>
+              <option value="6e2c607c-c521-455e-bc40-1246309ee232">Soltero</option>
+              <option value="e09ad1f2-57bc-43cc-bdfc-188d4bfcc27a">Casado</option>
+              <option value="16a0fb80-0ffa-4f0a-b9be-3acf2f27ecb6">Divorciado</option>
+              <option value="a3e32b18-036f-4b40-b51e-5254fcdc15af">Viudo</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="citizenship">Ciudadanía *</label>
+            <select id="citizenship" name="citizenship" required>
+        <option value="">Selecciona tu ciudadanía</option>
+        <option value="96ae123c-f46b-1410-f998-00155d043204">Reino Unido</option>
+        <option value="e0be1264-f36b-1410-fa98-00155d043204">Estados Unidos</option>
+        <option value="f8af0e88-f36b-1410-fa98-00155d043204">Canadá</option>
+        <option value="f7bf32c8-f36b-1410-fc98-00155d043204">Alemania</option>
+        <option value="a470b005-e8bb-df11-b00f-001d60e938c6">Ucrania</option>
+        <option value="a570b005-e8bb-df11-b00f-001d60e938c6">Rusia</option>
+        <option value="a670b005-e8bb-df11-b00f-001d60e938c6">Australia</option>
+        <option value="a770b005-e8bb-df11-b00f-001d60e938c6">Kazajistán</option>
+        <option value="05e4c256-6f4f-46e0-95e4-05dd26f608ac">Uzbekistán</option>
+        <option value="d610e759-d1f6-4a02-a7af-0916182e6b98">Angola</option>
+        <option value="c922b323-ea93-4242-a37b-0d0e27ddc382">San Cristóbal y Nieves</option>
+        <option value="caf1be51-a314-414a-acb7-0db927354055">Andorra</option>
+        <option value="4dd0f42e-3500-4e4f-8f4f-0f0a7be1761a">Sudáfrica</option>
+        <option value="fee3712f-b66b-4ff3-b488-1012abb62f74">Nauru</option>
+        <option value="1b270ff9-1874-4aa7-898a-124327f11079">Chad</option>
+        <option value="ce6d75d2-7d1f-4f24-810a-155af3789935">China</option>
+        <option value="fc90cd46-e632-4ad7-87ca-15cd9fc7b2ba">Portugal</option>
+        <option value="d149102c-7c07-4f61-8802-15ea7c9dc28c">Dominica</option>
+        <option value="9c9afabe-dbd2-4de9-94b2-17e5ed22a42a">Sudán del Sur</option>
+        <option value="f5b59386-dba2-4bca-a7df-1c99ca3c48f4">San Marino</option>
+        <option value="67bbc423-ab17-46cc-a14d-1d8044f80af9">Jordania</option>
+        <option value="86c7fb4c-e9b7-4a22-927f-228b2473b2ab">Israel</option>
+        <option value="78712fc7-979a-42b5-9044-26f70460578c">Guinea Ecuatorial</option>
+        <option value="c3e2f2df-f2c3-4ab3-a438-284e00ba897f">Namibia</option>
+        <option value="0af83cdf-c8c9-42ce-a95c-28a59d68f27b">Tonga</option>
+        <option value="c0516711-49dd-4269-9fde-294483257447">Timor Oriental</option>
+        <option value="d1d0b5e6-0d02-47c3-be56-2b0ca3cb2bc9">Costa Rica</option>
+        <option value="c394d364-da47-4a25-9824-2c6316dd669b">Hungría</option>
+        <option value="21e23912-eb8f-4357-8518-2e35b44568fa">Canada</option>
+        <option value="954f61c5-fc3f-4b31-b4ae-2f27e1969bee">Santa Lucía</option>
+        <option value="a7c02044-16a9-4144-9693-2f36c98eba84">Irán</option>
+        <option value="5dc703ad-98fe-4801-8d3e-2f80d1bc2ee2">Catar</option>
+        <option value="81ec3fac-3042-4cec-9326-3067b085501e">India</option>
+        <option value="3fde382f-b294-460f-bed7-30cc2a11f7e1">Bután</option>
+        <option value="e86a1d10-d235-43cc-ae14-31af4582f93f">Suiza</option>
+        <option value="e8393b55-f78e-4191-a0fe-32ff017cc792">Trinidad y Tobago</option>
+        <option value="2935d850-35fa-44f1-94b0-358cf213e831">Mauricio</option>
+        <option value="f0a9185b-5234-4ad6-ab18-36e02cc706c3">Lesoto</option>
+        <option value="81247f2b-eb61-4345-9ff0-37bd26cf9e1a">Nicaragua</option>
+        <option value="f9eb7e62-dadb-4d0c-bc2c-38a9a33995b5">Siria</option>
+        <option value="d0f33f5d-0892-471f-8d2b-3b3cae7f025c">Zambia</option>
+        <option value="407638e0-ab5e-4a6a-9970-3ceb3d4a0e52">Granada</option>
+        <option value="7f6ce728-e7a2-4bd4-b3fa-3dd8d71d725f">Vanuatu</option>
+        <option value="4a5f3df5-5818-4d3d-8992-3f6d505e0369">Países Bajos</option>
+        <option value="26e29af0-7063-419e-a3f1-3fd5e02e51e1">Perú</option>
+        <option value="7a3dcc73-8f4b-420a-9d66-4032c0cf081b">Guinea</option>
+        <option value="f074ced5-b8c6-46f1-a564-42e02f28b896">Honduras</option>
+        <option value="fa8806d1-8892-4052-8095-478cf03403d6">Kuwait</option>
+        <option value="1df6994d-8eb7-48c4-b4d7-47cef224183b">Liberia</option>
+        <option value="a2cee878-9a6a-4c8b-8236-48d79c750247">Micronesia</option>
+        <option value="60a5de4a-c778-4500-a53e-48fb3aa98679">Mongolia</option>
+        <option value="12039bec-8dd7-43fe-8a5f-4a69c2dd0b17">Albania</option>
+        <option value="d5261b93-0b2a-48c6-b3e4-4c84bdaf6bbd">Mozambique</option>
+        <option value="06258712-e7ee-45e6-8c21-4e10851c7805">Yemen</option>
+        <option value="56d24f2a-8aba-4681-b73e-4eae281cc6bf">Nigeria</option>
+        <option value="d2be5abf-7422-47e8-a120-53041cebcf2a">Surinam</option>
+        <option value="9f2ada52-cac5-4489-b935-5453aae3656b">Somalia</option>
+        <option value="f170336b-39e2-4b7b-9cd7-55a86d857ffe">Georgia</option>
+        <option value="4f9eb4e3-39c5-4876-a6c0-55f8471e71e0">Estonia</option>
+        <option value="a0f7cbdf-dc18-4502-a97c-55f96fed5bc6">Argelia</option>
+        <option value="7f43af47-6600-4bac-bbc7-57bfabaaf400">Bosnia y Herzegovina</option>
+        <option value="83821edb-ba29-4f3d-af0b-5958e6199dc8">Finlandia</option>
+        <option value="3062429e-30b7-4b23-af88-5a0bac778148">Islas Marshall</option>
+        <option value="095719c3-5400-4b0d-8186-5af49e4c41dc">New York</option>
+        <option value="94715d14-aa6b-4cca-b514-5b7b0495edd8">República Checa</option>
+        <option value="faa20c1b-d5cd-4986-88b4-5bcfc64584b0">Botsuana</option>
+        <option value="8fdf0209-0830-4bb7-93f2-5c968a7a1b78">Libia</option>
+        <option value="ef17deb5-6ab3-4faf-8776-5cccd1c98eb8">República Democrática del Congo</option>
+        <option value="2bc51f5d-60d5-4139-b9e2-5cef7bdd410d">Kenia</option>
+        <option value="f31f6c23-6d29-4503-b61f-5d37b22f74e0">Austria</option>
+        <option value="3545ad54-a4ec-4710-b23d-5d73dc48541f">Santo Tomé y Príncipe</option>
+        <option value="3c7b9204-7a95-490c-a566-651cd0c26ecc">Afganistán</option>
+        <option value="2b33479d-2db3-456a-b746-66249aef9417">France</option>
+        <option value="0e1793b1-2c81-4e8a-b86d-664315924daf">Bangladés</option>
+        <option value="323484c4-f096-4cab-8fed-665153354443">Malaui</option>
+        <option value="e4020903-eb6c-4970-ad96-6711b9c448c7">Ciudad del Vaticano</option>
+        <option value="7479bb0f-fd8e-4255-80e1-671442c0c778">Maldivas</option>
+        <option value="fc446585-b779-4d9f-a128-672119e61dc6">Australia</option>
+        <option value="b0786bd5-5efa-4765-9ca2-681e3981e824">España</option>
+        <option value="8aaf430e-6e6b-49b4-80bf-69567b733224">Dinamarca</option>
+        <option value="ba96d2c6-5900-4079-b736-6a899d2d6ced">Fiyi</option>
+        <option value="ed1b378b-599e-4b64-aafa-6ce85941fac4">Samoa</option>
+        <option value="a678ea80-9be5-4aea-b154-6e04f4c01df4">Venezuela</option>
+        <option value="ded79a2f-2b39-404e-b4bf-6ebb197e4715">Palestina</option>
+        <option value="14b1d269-4d54-4e92-a800-6f62b24535ca">Nepal</option>
+        <option value="cf1a2b73-6b37-43e0-bdbb-6ff8c1047621">Myanmar</option>
+        <option value="2e86aac4-d6e8-4742-8870-70bd6769d05b">Irlanda</option>
+        <option value="98b99a56-25e8-4e8c-a915-714f3bf7e188">Túnez</option>
+        <option value="df02d10c-f478-4cd4-9fda-7334d5f7a736">Gabón</option>
+        <option value="c2db1177-885c-4b7c-9fa8-735ace37dcfd">Rumanía</option>
+        <option value="0ff8752b-9454-4c65-82dc-739f8c3f2ca4">Kiribati</option>
+        <option value="b1ae56cd-f4e3-48aa-bbb6-75a79b8c8cce">Eslovaquia</option>
+        <option value="0b20d74b-b6c2-4ae4-8b09-76496bac3ea3">Papúa Nueva Guinea</option>
+        <option value="ae1d6af1-7f40-4735-80e7-7744ecc4b25d">Turquía</option>
+        <option value="ea3c310b-efac-4bd3-8a68-7767f72d88dc">Pakistán</option>
+        <option value="5ac96ebe-472a-455b-9404-78e1088aaa0b">Ghana</option>
+        <option value="ee656d22-4aea-4ffb-b126-7beb26f2df54">Eritrea</option>
+        <option value="60e3c2a9-61c1-4dff-82d1-7dbf0a65a2cd">Marruecos</option>
+        <option value="0832b59d-e174-4f5b-b7cb-7de11634b0d5">Liechtenstein</option>
+        <option value="949feb3a-9021-4a3d-9c99-7f5605360ca6">Santiago</option>
+        <option value="a6e96fb2-e0fc-4976-a45c-801e212dcc2e">Moldavia</option>
+        <option value="b1ba1b64-8b3e-4d47-a74f-804bb2a30e68">Egipto</option>
+        <option value="836d350a-232a-4495-8110-812f4b980804">Singapur</option>
+        <option value="bf139168-3b3a-4f83-9555-83605eb90db3">Montenegro</option>
+        <option value="73248604-35ff-401a-b5fd-83f656ed3fb9">Buenos Aires</option>
+        <option value="7347f03f-d4d0-4553-9231-855f23623b94">Argentina</option>
+        <option value="55f0022b-2568-4d64-a01d-85e3fd99ccd5">Paraguay</option>
+        <option value="da4ed170-1bb2-46a9-aa28-8986b987c66f">Colombia</option>
+        <option value="3d238027-561f-4bbe-90be-8a5802a0a17a">Haití</option>
+        <option value="5d7e6d8f-b66a-4a90-9357-8c3578e20ba2">Malasia</option>
+        <option value="adfdabfa-685e-4502-bfcb-8ced8854d227">Zimbabue</option>
+        <option value="2ab9cf79-a583-4919-887c-8d2c51ac8006">Palaos</option>
+        <option value="5427d100-a8f8-46ab-accc-8d49fee9855a">Bolivia</option>
+        <option value="7dc0517d-bd26-4237-94f1-8dfc02aecaec">Malí</option>
+        <option value="2c70ec6b-d0f0-43ab-9b8f-8ed62e9d4a00">Bélgica</option>
+        <option value="0ce248c6-ed97-4802-93fe-8f25395dae28">Bahamas</option>
+        <option value="fbe2f7e0-af6b-4ca1-8de8-8f527975fec5">Bulgaria</option>
+        <option value="5ce75d63-5761-4f87-bda5-8fe56e5bbf9e">Jamaica</option>
+        <option value="55d3e36d-9340-492a-aa5d-91759fe36c67">Bahréin</option>
+        <option value="ca806037-9386-4b1a-a848-936610849a18">Ruanda</option>
+        <option value="26f25c44-b38d-4c0f-a6c7-9485b26da643">Islas Salomón</option>
+        <option value="9fd083bd-6a7b-44e5-89ee-950b913a34dc">Camboya</option>
+        <option value="eb72f2db-9ed0-41f6-b28c-96fda0a4bfa7">Sierra Leona</option>
+        <option value="3675781a-02de-4ceb-b093-994209b3b937">Azerbaiyán</option>
+        <option value="731e3c27-61e6-4db9-b1cc-9a71551bd49d">Cuba</option>
+        <option value="fcdaa810-4c87-42c5-b7cf-9c18942f35c6">Sri Lanka</option>
+        <option value="a1de94f6-46f8-4853-b34d-9cc096d490cc">Camerún</option>
+        <option value="0ea9ded1-a4a7-4c5d-9d48-a0a1451ac003">Armenia</option>
+        <option value="58e946b2-d660-4cd1-9b30-a13756f187c1">Comoras</option>
+        <option value="69cccec5-3ba8-4f9d-a9f4-a1bf10a890a2">Níger</option>
+        <option value="7efe86fa-0e15-4833-b764-a20b0ed9ed71">Noruega</option>
+        <option value="d2d20f40-01d1-4129-8781-a353c26dae11">Madagascar</option>
+        <option value="ce199576-4970-4bb1-abbe-a400da6e5b80">Turkmenistán</option>
+        <option value="3a7f2071-464c-4b07-845f-a46808ea6201">El Salvador</option>
+        <option value="d30d890b-6837-4dcd-9044-a477047e7b74">Arabia Saudita</option>
+        <option value="b47b4055-d811-4f21-a977-a48dda0b49bf">Tuvalu</option>
+        <option value="3ad7dda8-a525-4576-95dd-a492b1df8823">Mónaco</option>
+        <option value="89ce2bc5-efc1-4bf5-8123-a505da04a283">Uganda</option>
+        <option value="6525ec6f-8650-45f8-915a-a61b6f3bf09f">Bielorrusia</option>
+        <option value="5cee91ae-e9ec-4ada-84ff-a6c661f23e3d">Cabo Verde</option>
+        <option value="3c4cbd26-d517-41a7-8e21-a7dd2404c0ca">Italy</option>
+        <option value="0fa2d5ff-4431-43ae-b0fa-a8ce58e10bc5">Burundi</option>
+        <option value="c5f65a81-0517-48cf-b113-a9699725cacc">Panamá</option>
+        <option value="0ab9444e-e28c-4fe6-9c64-aac1ac10cfed">Barbados</option>
+        <option value="3184deab-d3bc-480d-badd-abcdf0dacb59">Ciudad de Mexico</option>
+        <option value="1484e81e-2aab-4fee-9a8a-ad852d096028">Laos</option>
+        <option value="8e16d5d4-9d96-4971-a117-ada923ac50b2">Chipre</option>
+        <option value="e6a31049-2109-4953-8cf8-af9d9cdb1068">Letonia</option>
+        <option value="86ff196d-8809-4920-8146-b02ce52101e8">Yibuti</option>
+        <option value="ca916853-6ae3-414f-a643-b08fe4c9ccae">Seychelles</option>
+        <option value="ce2e9224-f1ec-447a-8418-b0fcca7e6459">Gambia</option>
+        <option value="6eb5981b-33fb-4b59-828b-b225934478ec">Antigua y Barbuda</option>
+        <option value="6fc2685d-1886-4647-97a5-b3afe10eb224">Grecia</option>
+        <option value="ccc6404f-4bb7-46c4-86b2-b6193bd6413b">Luxemburgo</option>
+        <option value="9e0dcebd-5e17-40d7-ac7e-b6f7176ccbc1">Corea del Norte</option>
+        <option value="2d2d409f-6f98-4ea5-8c60-baf05e4e7fbd">República del Congo</option>
+        <option value="9bc75d52-2f41-4649-9015-bf723a6c6de9">Vietnam</option>
+        <option value="5bf6dbaa-3e6b-4aef-ae22-c01cc158e195">Omán</option>
+        <option value="0fe53701-b678-4b0c-b84a-c3f0e04046dd">Polonia</option>
+        <option value="7f85c8b3-96fd-4cd1-8c3e-c4039f304e26">Corea del Sur</option>
+        <option value="5eb5d049-b7bb-4d9a-ad9f-c5dfc5767e96">República Centroafricana</option>
+        <option value="ed9ed3c4-3380-40fd-b7b3-c8999f8c06e4">Brasil</option>
+        <option value="3f163c93-8318-4978-99dc-cb52c64c8999">Togo</option>
+        <option value="0a599c9f-9ce7-4362-bcf8-cc3df11635de">Chile</option>
+        <option value="ab862349-ba25-43f8-8669-ccb757dec63e">Lituania</option>
+        <option value="64b74800-cd73-4b93-ab93-ce949e8a8e85">Croacia</option>
+        <option value="af3895df-5340-4cb2-b217-ceaff3d4a665">Mauritania</option>
+        <option value="d6539348-c531-47b6-ad19-cee0f74608d8">Emiratos Árabes Unidos</option>
+        <option value="fd86fb72-4b89-4ea9-9e9f-cf3555f5ea6b">Tailandia</option>
+        <option value="eb13a8e0-5be7-4ef6-bddc-d35436a40807">Guatemala</option>
+        <option value="55c355f6-0d29-496f-93e3-d6e407f3292f">República Dominicana</option>
+        <option value="c6425e57-daec-4795-a16d-d7f947f3c6f1">Uruguay</option>
+        <option value="4a88fe46-607b-4e74-ad4f-d80a50079ba6">Nueva Zelanda</option>
+        <option value="3bd504c6-af1e-485f-b59f-d8c3f746e499">Macedonia</option>
+        <option value="915beb34-4269-4838-a36d-d9b8ee2091fc">Brunéi</option>
+        <option value="7fbdb3a5-39ca-41ee-afc5-de9772977def">Guinea-Bissau</option>
+        <option value="1405c8be-7561-444f-a7a6-e0a8731507d3">Sudán</option>
+        <option value="881f89a5-47ec-4cb9-8848-e28bb060d1c8">Eslovenia</option>
+        <option value="3319ecac-1b30-4b91-9435-e52c0279f82c">México</option>
+        <option value="4eddb4ef-8cc9-4f84-a797-e5ce2b1998b0">Burkina Faso</option>
+        <option value="90923d00-c4f3-4bf2-89bb-e6b59b41f2fc">Líbano</option>
+        <option value="d94a65ce-6481-4428-9e08-e6eecf031c31">Los Angeles</option>
+        <option value="98e6bd19-b8da-472c-89ff-e8c3342557e3">San Vicente y las Granadinas</option>
+        <option value="f63b7985-4d0b-4c90-bf45-e8ef2ad789cf">Malta</option>
+        <option value="570a73f3-8c17-4cd8-9190-e9486dabae06">Tanzania</option>
+        <option value="332bbd84-8d25-4e01-8f94-eb51d70d4497">Kirguistán</option>
+        <option value="09ffcac1-d9c7-42a2-bfe5-ed245a2b997e">Iraq</option>
+        <option value="066dca30-20ae-422a-b387-ee6e6a2d5cf0">Ecuador</option>
+        <option value="cf8f0c6a-e54f-4f39-8f40-ef1861728911">Serbia</option>
+        <option value="e76b2a3f-41d6-4807-b491-ef53eece6ea5">Suecia</option>
+        <option value="3d097fbc-862e-4124-bc43-f0bcba89f59e">Guyana</option>
+        <option value="52066f89-1649-4f48-a53b-f4a6e38c181f">Islandia</option>
+        <option value="9264c6d9-0c82-4153-815d-f67be231b2a6">Suazilandia</option>
+        <option value="a4ea499d-9949-4a15-8c8b-f8d1b74fa918">Senegal</option>
+        <option value="fc2d2c4d-618b-4ded-90da-f94af0b73536">Japón</option>
+        <option value="115347fc-f530-4b57-a232-fb837332c25a">Benín</option>
+        <option value="51c56c88-22dc-4e5d-b1c3-fbe6af38759b">Belice</option>
+        <option value="bf0a11b7-4ff3-40bf-98bd-fcd2416dc113">Indonesia</option>
+        <option value="80596e50-fe01-4150-9a0e-fd5683e57d96">Etiopía</option>
+        <option value="297b9103-f0e6-44a3-9f52-fd9bc16d3e19">Filipinas</option>
+        <option value="5416f161-224f-4df0-877c-fdbe6f5f26df">Costa de Marfil</option>
+        <option value="bb24b7e4-44bd-49a2-9280-ff061e8a2c8d">Tayikistán</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="idNumber">Número de cédula</label>
+      <input 
+              type="text" 
+              id="idNumber" 
+              name="idNumber" 
+              placeholder="Ej: 8-475-621"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="spouseName">Cónyuge</label>
+            <input 
+              type="text" 
+              id="spouseName" 
+              name="spouseName" 
+              placeholder="Ej: María López"
+            />
+          </div>
+          <div class="form-group">
+            <label for="numberOfDependents">Número de dependientes</label>
+            <input 
+              type="number" 
+              id="numberOfDependents" 
+              name="numberOfDependents" 
+              min="0"
+              placeholder="0"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Profesional -->
+      <div class="tab-content" id="tab-professional">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="seniority">Antigüedad *</label>
+            <select id="seniority" name="seniority" required>
+              <option value="">Selecciona tu antigüedad</option>
+              <option value="c117f3fb-4686-4a7c-bc5c-54a368600c07">5 años o más</option>
+              <option value="da492fec-d7b0-43ec-8754-60a64c984da9">4 años</option>
+              <option value="147516a6-9eb0-4d7f-871b-78a5797624fc">2 años</option>
+              <option value="dfe9b506-0157-4aa9-bc7f-cd2a9198ff68">2 años</option>
+              <option value="abdb7eaa-f950-4f49-a778-ddee235332c7">1 año</option>
+              <option value="06f6d877-0eac-4979-904b-f12ccc6d9238">3 años</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="department">Departamento *</label>
+            <select id="department" name="department" required>
+              <option value="">Selecciona tu departamento</option>
+              <option value="9b90c192-60e6-df11-971b-001d60e938c6">Desarrollo</option>
+              <option value="2076c4b6-7fe6-df11-971b-001d60e938c6">Ventas</option>
+              <option value="66ffa487-b4da-df11-9b2a-001d60e938c6">Administración</option>
+              <option value="4691a98e-b4da-df11-9b2a-001d60e938c6">Logística</option>
+              <option value="4791a98e-b4da-df11-9b2a-001d60e938c6">Marketing</option>
+              <option value="769964a0-b4da-df11-9b2a-001d60e938c6">Fabricación y distribución</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="educationType">Tipo de educación *</label>
+            <select id="educationType" name="educationType" required>
+              <option value="">Selecciona tu nivel de educación</option>
+              <option value="9d0a8a05-caae-4cf6-b908-1fca85cea1d2">Doctorado</option>
+              <option value="aeeb4d34-d95d-4b83-b282-26f14868a578">Secundario</option>
+              <option value="a91d8067-80a1-4bca-9cfe-28d7aeb44a69">Universidad</option>
+              <option value="1289483a-83f2-4677-91ce-5c542ce7cbdd">Primario</option>
+              <option value="5baea73e-75bd-4061-8d9e-86bc405ba1aa">GED</option>
+              <option value="24cc56ee-0fab-4ca0-abc4-c05fcb400a96">Universidad</option>
+              <option value="cfce93d2-0168-4613-9e70-cdb6c4be4cdb">Diploma de secundaria</option>
+              <option value="2d5bb486-d824-4fcc-8aad-dfd593f33110">Doctorado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="activityType">Tipo de actividad comercial *</label>
+            <select id="activityType" name="activityType" required>
+              <option value="">Selecciona tu tipo de actividad</option>
+              <option value="95d0984e-7c96-484c-895e-03809a801576">Empleo de temporada</option>
+              <option value="e0edffde-bf62-45d2-acde-ab741e4e138b">Empleo a tiempo completo</option>
+              <option value="2890744e-7c85-4dcb-a034-df3e608d2cbb">Empleo a tiempo parcial</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="spouseEducation">Educación del cónyuge</label>
+            <select id="spouseEducation" name="spouseEducation">
+              <option value="">Selecciona nivel de educación del cónyuge</option>
+              <option value="9d0a8a05-caae-4cf6-b908-1fca85cea1d2">Doctorado</option>
+              <option value="aeeb4d34-d95d-4b83-b282-26f14868a578">Secundario</option>
+              <option value="a91d8067-80a1-4bca-9cfe-28d7aeb44a69">Universidad</option>
+              <option value="1289483a-83f2-4677-91ce-5c542ce7cbdd">Primario</option>
+              <option value="5baea73e-75bd-4061-8d9e-86bc405ba1aa">GED</option>
+              <option value="24cc56ee-0fab-4ca0-abc4-c05fcb400a96">Universidad</option>
+              <option value="cfce93d2-0168-4613-9e70-cdb6c4be4cdb">Diploma de secundaria</option>
+              <option value="2d5bb486-d824-4fcc-8aad-dfd593f33110">Doctorado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="housingType">Tipo de vivienda</label>
+            <select id="housingType" name="housingType">
+              <option value="">Selecciona tipo de vivienda</option>
+              <option value="b0ccab89-4b17-4210-9842-49ce9c0d3f33">Propia</option>
+              <option value="rented">Alquilada</option>
+              <option value="family">Familiar</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Contacto -->
+      <div class="tab-content" id="tab-contact">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Teléfono *</label>
       <input 
         type="tel" 
         id="phone" 
         name="phone" 
         required 
-        placeholder="Enter your phone number"
-      />
+              placeholder="Ej: +44 20 7946 0958"
+            />
+          </div>
+          <div class="form-group">
+            <label for="mobilePhone">Teléfono móvil</label>
+            <input 
+              type="tel" 
+              id="mobilePhone" 
+              name="mobilePhone" 
+              placeholder="Ej: +44 7700 900077"
+            />
+          </div>
     </div>
 
+        <div class="form-row">
     <div class="form-group">
-      <label for="email">Email (optional)</label>
+            <label for="email">Email *</label>
       <input 
         type="email" 
         id="email" 
         name="email" 
-        placeholder="Enter your email address"
-      />
+              required
+              placeholder="Ej: juan.perez@email.com"
+            />
+          </div>
+          <div class="form-group">
+            <label for="homePhone">Teléfono de casa</label>
+            <input 
+              type="tel" 
+              id="homePhone" 
+              name="homePhone" 
+              placeholder="Ej: +44 20 7946 0958"
+            />
+          </div>
     </div>
 
+        <div class="form-row">
     <div class="form-group">
-      <label>Certification (optional)</label>
+            <label for="address">Dirección</label>
+            <input 
+              type="text" 
+              id="address" 
+              name="address" 
+              placeholder="Ej: 123 Main Street, London"
+            />
+          </div>
+          <div class="form-group">
+            <label for="zip">Código postal</label>
+            <input 
+              type="text" 
+              id="zip" 
+              name="zip" 
+              placeholder="Ej: SW1A 1AA"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="skype">Skype</label>
+            <input 
+              type="text" 
+              id="skype" 
+              name="skype" 
+              placeholder="Ej: juan.perez"
+            />
+          </div>
+          <div class="form-group">
+            <label for="facebook">Facebook</label>
+            <input 
+              type="url" 
+              id="facebook" 
+              name="facebook" 
+              placeholder="https://facebook.com/juan.perez"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="linkedin">LinkedIn</label>
+            <input 
+              type="url" 
+              id="linkedin" 
+              name="linkedin" 
+              placeholder="https://linkedin.com/in/juan-perez"
+            />
+          </div>
+          <div class="form-group">
+            <label for="twitter">Twitter</label>
+            <input 
+              type="url" 
+              id="twitter" 
+              name="twitter" 
+              placeholder="https://twitter.com/juanperez"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Documentos -->
+      <div class="tab-content" id="tab-documents">
+        <div class="form-group">
+          <label>Certificaciones (opcional)</label>
       <div class="file-upload-area" id="fileUploadArea">
         <div class="upload-content">
           <div class="upload-icon">📤</div>
@@ -174,6 +657,8 @@
         <input type="file" id="certification" name="certification" accept=".pdf,.doc,.docx" multiple>
       </div>
       <div class="uploaded-files" id="uploadedFiles"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -333,6 +818,129 @@
     top: 50%;
     transform: translateY(-50%);
     font-size: 18px;
+  }
+
+  /* Select styles */
+  select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+  }
+
+  select:focus {
+    outline: none;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+  }
+
+  select:hover {
+    border-color: #cbd5e0;
+  }
+
+  select:required:invalid {
+    color: #a0aec0;
+  }
+
+  select option {
+    color: #2d3748;
+    padding: 8px;
+  }
+
+  /* Form rows for side-by-side fields */
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+  }
+
+  /* Tabs styles */
+  .tabs-container {
+    margin-top: 20px;
+  }
+
+  .tabs-nav {
+    display: flex;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 20px;
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    color: #6c757d;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+
+  .tab-btn:hover {
+    color: #8b5cf6;
+    background: #f8f7ff;
+  }
+
+  .tab-btn.active {
+    color: #8b5cf6;
+    border-bottom-color: #8b5cf6;
+    background: #f8f7ff;
+  }
+
+  .tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive tabs */
+  @media (max-width: 768px) {
+    .tabs-nav {
+      flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+      flex: 1;
+      min-width: 120px;
+      text-align: center;
+      font-size: 12px;
+      padding: 10px 8px;
+    }
   }
 
   /* Sugerencias de ubicación */
@@ -690,8 +1298,31 @@
         roles: '',
         selectedJob: '',
         name: '',
+        dear: '',
+        birthDate: '',
+        placeOfBirth: '',
         phone: '',
+        mobilePhone: '',
+        homePhone: '',
         email: '',
+        address: '',
+        zip: '',
+        skype: '',
+        facebook: '',
+        linkedin: '',
+        twitter: '',
+        gender: '',
+        maritalStatus: '',
+        citizenship: '',
+        idNumber: '',
+        spouseName: '',
+        numberOfDependents: '',
+        seniority: '',
+        department: '',
+        educationType: '',
+        activityType: '',
+        spouseEducation: '',
+        housingType: '',
         files: []
       };
       
@@ -743,6 +1374,45 @@
         this.formData.roles = e.target.value;
         this.updateSummary();
       });
+
+      // Event listeners for new select fields
+      document.getElementById('gender').addEventListener('change', (e) => {
+        this.formData.gender = e.target.value;
+        this.updateSummary();
+      });
+
+      document.getElementById('maritalStatus').addEventListener('change', (e) => {
+        this.formData.maritalStatus = e.target.value;
+        this.updateSummary();
+      });
+
+      document.getElementById('citizenship').addEventListener('change', (e) => {
+        this.formData.citizenship = e.target.value;
+        this.updateSummary();
+      });
+
+      document.getElementById('seniority').addEventListener('change', (e) => {
+        this.formData.seniority = e.target.value;
+        this.updateSummary();
+      });
+
+      document.getElementById('department').addEventListener('change', (e) => {
+        this.formData.department = e.target.value;
+        this.updateSummary();
+      });
+
+      document.getElementById('educationType').addEventListener('change', (e) => {
+        this.formData.educationType = e.target.value;
+        this.updateSummary();
+      });
+
+      document.getElementById('activityType').addEventListener('change', (e) => {
+        this.formData.activityType = e.target.value;
+        this.updateSummary();
+      });
+
+      // Tab functionality
+      this.setupTabs();
     }
 
     nextStep() {
@@ -819,13 +1489,47 @@
         case 3:
           const name = document.getElementById('name').value.trim();
           const phone = document.getElementById('phone').value.trim();
-          if (!name || !phone) {
-            alert('Please fill in all required fields');
+          const email = document.getElementById('email').value.trim();
+          const gender = document.getElementById('gender').value;
+          const maritalStatus = document.getElementById('maritalStatus').value;
+          const citizenship = document.getElementById('citizenship').value;
+          const seniority = document.getElementById('seniority').value;
+          const department = document.getElementById('department').value;
+          const educationType = document.getElementById('educationType').value;
+          const activityType = document.getElementById('activityType').value;
+          
+          if (!name || !phone || !email || !gender || !maritalStatus || !citizenship || !seniority || !department || !educationType || !activityType) {
+            alert('Por favor completa todos los campos obligatorios (marcados con *)');
             return false;
           }
+          
+          // Update all form data
           this.formData.name = name;
+          this.formData.dear = document.getElementById('dear').value.trim();
+          this.formData.birthDate = document.getElementById('birthDate').value;
+          this.formData.placeOfBirth = document.getElementById('placeOfBirth').value.trim();
           this.formData.phone = phone;
-          this.formData.email = document.getElementById('email').value.trim();
+          this.formData.mobilePhone = document.getElementById('mobilePhone').value.trim();
+          this.formData.homePhone = document.getElementById('homePhone').value.trim();
+          this.formData.email = email;
+          this.formData.address = document.getElementById('address').value.trim();
+          this.formData.zip = document.getElementById('zip').value.trim();
+          this.formData.skype = document.getElementById('skype').value.trim();
+          this.formData.facebook = document.getElementById('facebook').value.trim();
+          this.formData.linkedin = document.getElementById('linkedin').value.trim();
+          this.formData.twitter = document.getElementById('twitter').value.trim();
+          this.formData.gender = gender;
+          this.formData.maritalStatus = maritalStatus;
+          this.formData.citizenship = citizenship;
+          this.formData.idNumber = document.getElementById('idNumber').value.trim();
+          this.formData.spouseName = document.getElementById('spouseName').value.trim();
+          this.formData.numberOfDependents = document.getElementById('numberOfDependents').value;
+          this.formData.seniority = seniority;
+          this.formData.department = department;
+          this.formData.educationType = educationType;
+          this.formData.activityType = activityType;
+          this.formData.spouseEducation = document.getElementById('spouseEducation').value;
+          this.formData.housingType = document.getElementById('housingType').value;
           break;
       }
       return true;
@@ -848,6 +1552,13 @@
     updateSummary() {
       const locationEl = document.getElementById('selectedLocation');
       const rolesEl = document.getElementById('selectedRoles');
+      const genderEl = document.getElementById('selectedGender');
+      const maritalStatusEl = document.getElementById('selectedMaritalStatus');
+      const citizenshipEl = document.getElementById('selectedCitizenship');
+      const seniorityEl = document.getElementById('selectedSeniority');
+      const departmentEl = document.getElementById('selectedDepartment');
+      const educationEl = document.getElementById('selectedEducation');
+      const activityEl = document.getElementById('selectedActivity');
       
       if (locationEl) {
         locationEl.textContent = this.formData.location || 'Not selected';
@@ -855,6 +1566,132 @@
       if (rolesEl) {
         rolesEl.textContent = this.formData.selectedJob || 'Not selected';
       }
+      if (genderEl) {
+        const genderText = this.formData.gender ? 
+          (this.formData.gender === 'eeac42ee-65b6-df11-831a-001d60e938c6' ? 'Masculino' : 'Femenino') : 
+          'Not selected';
+        genderEl.textContent = genderText;
+      }
+      if (maritalStatusEl) {
+        const maritalStatusText = this.getMaritalStatusText(this.formData.maritalStatus);
+        maritalStatusEl.textContent = maritalStatusText;
+      }
+      if (citizenshipEl) {
+        const citizenshipText = this.getCitizenshipText(this.formData.citizenship);
+        citizenshipEl.textContent = citizenshipText;
+      }
+      if (seniorityEl) {
+        const seniorityText = this.getSeniorityText(this.formData.seniority);
+        seniorityEl.textContent = seniorityText;
+      }
+      if (departmentEl) {
+        const departmentText = this.getDepartmentText(this.formData.department);
+        departmentEl.textContent = departmentText;
+      }
+      if (educationEl) {
+        const educationText = this.getEducationText(this.formData.educationType);
+        educationEl.textContent = educationText;
+      }
+      if (activityEl) {
+        const activityText = this.getActivityText(this.formData.activityType);
+        activityEl.textContent = activityText;
+      }
+    }
+
+    // Helper functions to get display text for select values
+    getMaritalStatusText(value) {
+      const statusMap = {
+        '81745fc0-0335-4a57-b32d-10780f729764': 'Unión civil/pareja de hecho',
+        '6e2c607c-c521-455e-bc40-1246309ee232': 'Soltero',
+        'e09ad1f2-57bc-43cc-bdfc-188d4bfcc27a': 'Casado',
+        '16a0fb80-0ffa-4f0a-b9be-3acf2f27ecb6': 'Divorciado',
+        'a3e32b18-036f-4b40-b51e-5254fcdc15af': 'Viudo'
+      };
+      return statusMap[value] || 'Not selected';
+    }
+
+    getCitizenshipText(value) {
+      // This is a simplified version - in a real app you'd want a complete mapping
+      const citizenshipMap = {
+        '96ae123c-f46b-1410-f998-00155d043204': 'Reino Unido',
+        'e0be1264-f36b-1410-fa98-00155d043204': 'Estados Unidos',
+        'f8af0e88-f36b-1410-fa98-00155d043204': 'Canadá',
+        'f7bf32c8-f36b-1410-fc98-00155d043204': 'Alemania',
+        'b0786bd5-5efa-4765-9ca2-681e3981e824': 'España',
+        '7347f03f-d4d0-4553-9231-855f23623b94': 'Argentina',
+        'da4ed170-1bb2-46a9-aa28-8986b987c66f': 'Colombia',
+        '3319ecac-1b30-4b91-9435-e52c0279f82c': 'México',
+        'ed9ed3c4-3380-40fd-b7b3-c8999f8c06e4': 'Brasil',
+        '0a599c9f-9ce7-4362-bcf8-cc3df11635de': 'Chile'
+        // Add more mappings as needed
+      };
+      return citizenshipMap[value] || 'Not selected';
+    }
+
+    getSeniorityText(value) {
+      const seniorityMap = {
+        'c117f3fb-4686-4a7c-bc5c-54a368600c07': '5 años o más',
+        'da492fec-d7b0-43ec-8754-60a64c984da9': '4 años',
+        '147516a6-9eb0-4d7f-871b-78a5797624fc': '2 años',
+        'dfe9b506-0157-4aa9-bc7f-cd2a9198ff68': '2 años',
+        'abdb7eaa-f950-4f49-a778-ddee235332c7': '1 año',
+        '06f6d877-0eac-4979-904b-f12ccc6d9238': '3 años'
+      };
+      return seniorityMap[value] || 'Not selected';
+    }
+
+    getDepartmentText(value) {
+      const departmentMap = {
+        '9b90c192-60e6-df11-971b-001d60e938c6': 'Desarrollo',
+        '2076c4b6-7fe6-df11-971b-001d60e938c6': 'Ventas',
+        '66ffa487-b4da-df11-9b2a-001d60e938c6': 'Administración',
+        '4691a98e-b4da-df11-9b2a-001d60e938c6': 'Logística',
+        '4791a98e-b4da-df11-9b2a-001d60e938c6': 'Marketing',
+        '769964a0-b4da-df11-9b2a-001d60e938c6': 'Fabricación y distribución'
+      };
+      return departmentMap[value] || 'Not selected';
+    }
+
+    getEducationText(value) {
+      const educationMap = {
+        '9d0a8a05-caae-4cf6-b908-1fca85cea1d2': 'Doctorado',
+        'aeeb4d34-d95d-4b83-b282-26f14868a578': 'Secundario',
+        'a91d8067-80a1-4bca-9cfe-28d7aeb44a69': 'Universidad',
+        '1289483a-83f2-4677-91ce-5c542ce7cbdd': 'Primario',
+        '5baea73e-75bd-4061-8d9e-86bc405ba1aa': 'GED',
+        '24cc56ee-0fab-4ca0-abc4-c05fcb400a96': 'Universidad',
+        'cfce93d2-0168-4613-9e70-cdb6c4be4cdb': 'Diploma de secundaria',
+        '2d5bb486-d824-4fcc-8aad-dfd593f33110': 'Doctorado'
+      };
+      return educationMap[value] || 'Not selected';
+    }
+
+    getActivityText(value) {
+      const activityMap = {
+        '95d0984e-7c96-484c-895e-03809a801576': 'Empleo de temporada',
+        'e0edffde-bf62-45d2-acde-ab741e4e138b': 'Empleo a tiempo completo',
+        '2890744e-7c85-4dcb-a034-df3e608d2cbb': 'Empleo a tiempo parcial'
+      };
+      return activityMap[value] || 'Not selected';
+    }
+
+    setupTabs() {
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const targetTab = button.dataset.tab;
+          
+          // Remove active class from all buttons and contents
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          tabContents.forEach(content => content.classList.remove('active'));
+          
+          // Add active class to clicked button and corresponding content
+          button.classList.add('active');
+          document.getElementById(`tab-${targetTab}`).classList.add('active');
+        });
+      });
     }
 
     setupFileUpload() {
@@ -939,6 +1776,22 @@
       if (this.validateCurrentStep()) {
         // Simular envío
         console.log('Form data:', this.formData);
+        console.log('Complete form submission data:', {
+          location: this.formData.location,
+          roles: this.formData.roles,
+          selectedJob: this.formData.selectedJob,
+          name: this.formData.name,
+          phone: this.formData.phone,
+          email: this.formData.email,
+          gender: this.formData.gender,
+          maritalStatus: this.formData.maritalStatus,
+          citizenship: this.formData.citizenship,
+          seniority: this.formData.seniority,
+          department: this.formData.department,
+          educationType: this.formData.educationType,
+          activityType: this.formData.activityType,
+          files: this.formData.files
+        });
         
         // Mostrar paso de confirmación
         this.currentStep = 4;
