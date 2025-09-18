@@ -13,10 +13,14 @@ const { contactId = "60d45129-99d1-44a9-8c74-1d0b924795f4", includePhoto = true,
 // Función para obtener datos del contacto
 async function getContactInfo(contactId: string, includePhoto: boolean): Promise<CreatioContactResponse | null> {
   try {
+    console.log('Obteniendo información del contacto:', { contactId, includePhoto });
+    
     const requestBody: CreatioContactRequest = {
       contact_id: contactId,
       include_photo: includePhoto
     };
+
+    console.log('Enviando request a la API:', requestBody);
 
     const response = await fetch('https://h9hl7f2ijf.execute-api.us-east-1.amazonaws.com/dev/Contact', {
       method: 'POST',
@@ -26,11 +30,16 @@ async function getContactInfo(contactId: string, includePhoto: boolean): Promise
       body: JSON.stringify(requestBody)
     });
 
+    console.log('Respuesta de la API:', { status: response.status, statusText: response.statusText });
+
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorText = await response.text();
+      console.error('Error response body:', errorText);
+      throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
     }
 
     const data: CreatioContactResponse = await response.json();
+    console.log('Datos recibidos de la API:', data);
     return data;
   } catch (error) {
     console.error('Error fetching contact info:', error);
@@ -44,9 +53,21 @@ let isLoading = true;
 let error = null;
 
 try {
+  console.log('Iniciando carga de datos del contacto...');
   contactData = await getContactInfo(contactId, includePhoto);
+  
+  if (!contactData) {
+    throw new Error('No se pudieron obtener los datos del contacto');
+  }
+  
+  if (!contactData.success) {
+    throw new Error(`Error en la respuesta de la API: ${contactData.message || 'Error desconocido'}`);
+  }
+  
+  console.log('Datos del contacto cargados exitosamente');
   isLoading = false;
 } catch (err) {
+  console.error('Error al cargar datos del contacto:', err);
   error = err;
   isLoading = false;
 }
@@ -64,6 +85,11 @@ try {
       <div class="error-icon">⚠️</div>
       <h3>Error al cargar la información del contacto</h3>
       <p>Hubo un error al obtener los datos del contacto: {error.message}</p>
+      <p><strong>Contact ID:</strong> {contactId}</p>
+      <p><strong>Incluir foto:</strong> {includePhoto ? 'Sí' : 'No'}</p>
+      <button onclick="window.location.reload()" class="btn btn-primary" style="margin-top: 10px;">
+        Reintentar
+      </button>
     </div>
   ) : (contactData && contactData.success) ? (
     <div class="contact-card">
@@ -98,73 +124,67 @@ try {
         <div class="tabs-nav">
           <button type="button" class="tab-btn active" data-tab="personal">Información Personal</button>
           <button type="button" class="tab-btn" data-tab="professional">Información Profesional</button>
-          <button type="button" class="tab-btn" data-tab="financial">Información Financiera</button>
-          <button type="button" class="tab-btn" data-tab="family">Información Familiar</button>
           <button type="button" class="tab-btn" data-tab="documents">Documentos</button>
         </div>
 
         <!-- Tab Personal -->
         <div class="tab-content active" id="tab-personal">
-          <div class="contact-details">
-            <div class="detail-section">
-              <h3>Información de Contacto</h3>
-              <div class="detail-grid">
-                <div class="detail-item">
-                  <span class="detail-label">📧 Email:</span>
-                  {editable ? (
-                    <input type="email" class="editable-field" value={contactData.data.Email} data-field="Email" />
-                  ) : (
-                    <span class="detail-value">{contactData.data.Email}</span>
-                  )}
-                </div>
-                <div class="detail-item">
-                  <span class="detail-label">📱 Mobile:</span>
-                  {editable ? (
-                    <input type="tel" class="editable-field" value={contactData.data.MobilePhone || ''} data-field="MobilePhone" placeholder="Enter mobile phone" />
-                  ) : (
-                    <span class="detail-value">{contactData.data.MobilePhone || 'Not provided'}</span>
-                  )}
-                </div>
-                <div class="detail-item">
-                  <span class="detail-label">☎️ Phone:</span>
-                  {editable ? (
-                    <input type="tel" class="editable-field" value={contactData.data.Phone || ''} data-field="Phone" placeholder="Enter phone number" />
-                  ) : (
-                    <span class="detail-value">{contactData.data.Phone || 'Not provided'}</span>
-                  )}
-                </div>
-                <div class="detail-item">
-                  <span class="detail-label">🏠 Address:</span>
-                  {editable ? (
-                    <input type="text" class="editable-field" value={contactData.data.Address || ''} data-field="Address" placeholder="Enter address" />
-                  ) : (
-                    <span class="detail-value">{contactData.data.Address || 'Not provided'}</span>
-                  )}
-                </div>
+      <div class="contact-details">
+        <div class="detail-section">
+          <h3>Información de Contacto</h3>
+          <div class="detail-grid">
+            <div class="detail-item">
+              <span class="detail-label">📧 Email:</span>
+              <span class="detail-value">{contactData.data.Email || 'Not provided'}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">📱 Mobile:</span>
+              {editable ? (
+                <input type="tel" class="editable-field" value={contactData.data.MobilePhone || ''} data-field="MobilePhone" placeholder="Enter mobile phone" />
+              ) : (
+                <span class="detail-value">{contactData.data.MobilePhone || 'Not provided'}</span>
+              )}
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">☎️ Phone:</span>
+              {editable ? (
+                <input type="tel" class="editable-field" value={contactData.data.Phone || ''} data-field="Phone" placeholder="Enter phone number" />
+              ) : (
+                <span class="detail-value">{contactData.data.Phone || 'Not provided'}</span>
+              )}
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">🏠 Address:</span>
+              {editable ? (
+                <input type="text" class="editable-field" value={contactData.data.Address || ''} data-field="Address" placeholder="Enter address" />
+              ) : (
+                <span class="detail-value">{contactData.data.Address || 'Not provided'}</span>
+              )}
+            </div>
               </div>
             </div>
 
             <div class="detail-section">
               <h3>Información Personal Detallada</h3>
               <div class="detail-grid">
-                <div class="detail-item">
+            <div class="detail-item">
                   <span class="detail-label">👤 Edad:</span>
-                  {editable ? (
+              {editable ? (
                     <input type="number" class="editable-field" value={contactData.data.Age || ''} data-field="Age" placeholder="Enter age" min="0" max="120" />
-                  ) : (
+              ) : (
                     <span class="detail-value">{contactData.data.Age || 'Not specified'}</span>
-                  )}
-                </div>
-                <div class="detail-item">
+              )}
+            </div>
+            <div class="detail-item">
                   <span class="detail-label">🎂 Fecha de nacimiento:</span>
-                  {editable ? (
-                    <input type="date" class="editable-field" value={contactData.data.BirthDate ? contactData.data.BirthDate.split('T')[0] : ''} data-field="BirthDate" />
-                  ) : (
-                    <span class="detail-value">
-                      {contactData.data.BirthDate ? new Date(contactData.data.BirthDate).toLocaleDateString() : 'Not provided'}
-                    </span>
-                  )}
-                </div>
+              {editable ? (
+                <input type="date" class="editable-field" value={contactData.data.BirthDate ? contactData.data.BirthDate.split('T')[0] : ''} data-field="BirthDate" />
+              ) : (
+                <span class="detail-value">
+                  {contactData.data.BirthDate ? new Date(contactData.data.BirthDate).toLocaleDateString() : 'Not provided'}
+                </span>
+              )}
+            </div>
                 <div class="detail-item">
                   <span class="detail-label">👫 Género:</span>
                   {editable ? (
@@ -201,6 +221,54 @@ try {
                     </span>
                   )}
                 </div>
+                
+                <!-- Tipo de actividad comercial -->
+                <div class="detail-item">
+                  <span class="detail-label">💼 Tipo de actividad comercial:</span>
+                  {editable ? (
+                    <select class="editable-field" data-field="EmploymentTypeId">
+                      <option value="">Seleccionar tipo de actividad</option>
+                      <option value="e0edffde-bf62-45d2-acde-ab741e4e138b" selected={contactData.data.EmploymentTypeId === 'e0edffde-bf62-45d2-acde-ab741e4e138b'}>Empleo a tiempo completo</option>
+                      <option value="2890744e-7c85-4dcb-a034-df3e608d2cbb" selected={contactData.data.EmploymentTypeId === '2890744e-7c85-4dcb-a034-df3e608d2cbb'}>Empleo a tiempo parcial</option>
+                      <option value="95d0984e-7c96-484c-895e-03809a801576" selected={contactData.data.EmploymentTypeId === '95d0984e-7c96-484c-895e-03809a801576'}>Empleo de temporada</option>
+                    </select>
+                  ) : (
+                    <span class="detail-value">
+                      {contactData.data.EmploymentTypeId === '95d0984e-7c96-484c-895e-03809a801576' ? 'Empleo de temporada' :
+                       contactData.data.EmploymentTypeId === 'e0edffde-bf62-45d2-acde-ab741e4e138b' ? 'Empleo a tiempo completo' :
+                       contactData.data.EmploymentTypeId === '2890744e-7c85-4dcb-a034-df3e608d2cbb' ? 'Empleo a tiempo parcial' : 'Not specified'}
+                    </span>
+                  )}
+                </div>
+                
+                <!-- Tipo de educación -->
+                <div class="detail-item">
+                  <span class="detail-label">🎓 Tipo de educación:</span>
+                  {editable ? (
+                    <select class="editable-field" data-field="EducationId">
+                      <option value="">Seleccionar educación</option>
+                      <option value="9d0a8a05-caae-4cf6-b908-1fca85cea1d2" selected={contactData.data.EducationId === '9d0a8a05-caae-4cf6-b908-1fca85cea1d2'}>Doctorado</option>
+                      <option value="a91d8067-80a1-4bca-9cfe-28d7aeb44a69" selected={contactData.data.EducationId === 'a91d8067-80a1-4bca-9cfe-28d7aeb44a69'}>Universidad</option>
+                      <option value="24cc56ee-0fab-4ca0-abc4-c05fcb400a96" selected={contactData.data.EducationId === '24cc56ee-0fab-4ca0-abc4-c05fcb400a96'}>Universidad</option>
+                      <option value="cfce93d2-0168-4613-9e70-cdb6c4be4cdb" selected={contactData.data.EducationId === 'cfce93d2-0168-4613-9e70-cdb6c4be4cdb'}>Diploma de secundaria</option>
+                      <option value="aeeb4d34-d95d-4b83-b282-26f14868a578" selected={contactData.data.EducationId === 'aeeb4d34-d95d-4b83-b282-26f14868a578'}>Secundario</option>
+                      <option value="5baea73e-75bd-4061-8d9e-86bc405ba1aa" selected={contactData.data.EducationId === '5baea73e-75bd-4061-8d9e-86bc405ba1aa'}>GED</option>
+                      <option value="1289483a-83f2-4677-91ce-5c542ce7cbdd" selected={contactData.data.EducationId === '1289483a-83f2-4677-91ce-5c542ce7cbdd'}>Primario</option>
+                      <option value="2d5bb486-d824-4fcc-8aad-dfd593f33110" selected={contactData.data.EducationId === '2d5bb486-d824-4fcc-8aad-dfd593f33110'}>Doctorado</option>
+                    </select>
+                  ) : (
+                    <span class="detail-value">
+                      {contactData.data.EducationId === '9d0a8a05-caae-4cf6-b908-1fca85cea1d2' ? 'Doctorado' :
+                       contactData.data.EducationId === 'aeeb4d34-d95d-4b83-b282-26f14868a578' ? 'Secundario' :
+                       contactData.data.EducationId === 'a91d8067-80a1-4bca-9cfe-28d7aeb44a69' ? 'Universidad' :
+                       contactData.data.EducationId === '1289483a-83f2-4677-91ce-5c542ce7cbdd' ? 'Primario' :
+                       contactData.data.EducationId === '5baea73e-75bd-4061-8d9e-86bc405ba1aa' ? 'GED' :
+                       contactData.data.EducationId === '24cc56ee-0fab-4ca0-abc4-c05fcb400a96' ? 'Universidad' :
+                       contactData.data.EducationId === 'cfce93d2-0168-4613-9e70-cdb6c4be4cdb' ? 'Diploma de secundaria' :
+                       contactData.data.EducationId === '2d5bb486-d824-4fcc-8aad-dfd593f33110' ? 'Doctorado' : 'Not specified'}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -209,10 +277,10 @@ try {
         <!-- Tab Profesional -->
         <div class="tab-content" id="tab-professional">
           <div class="contact-details">
-            <div class="detail-section">
+        <div class="detail-section">
               <h3>Información Profesional</h3>
-              <div class="detail-grid">
-                <div class="detail-item">
+          <div class="detail-grid">
+            <div class="detail-item">
                   <span class="detail-label">🏢 Departamento:</span>
                   {editable ? (
                     <select class="editable-field" data-field="DepartmentId">
@@ -222,14 +290,14 @@ try {
                       <option value="66ffa487-b4da-df11-9b2a-001d60e938c6" selected={contactData.data.DepartmentId === '66ffa487-b4da-df11-9b2a-001d60e938c6'}>Administración</option>
                     </select>
                   ) : (
-                    <span class="detail-value">
+              <span class="detail-value">
                       {contactData.data.DepartmentId === '9b90c192-60e6-df11-971b-001d60e938c6' ? 'Desarrollo' :
                        contactData.data.DepartmentId === '2076c4b6-7fe6-df11-971b-001d60e938c6' ? 'Ventas' :
                        contactData.data.DepartmentId === '66ffa487-b4da-df11-9b2a-001d60e938c6' ? 'Administración' : 'Not specified'}
-                    </span>
+                </span>
                   )}
-                </div>
-                <div class="detail-item">
+            </div>
+            <div class="detail-item">
                   <span class="detail-label">🎓 Tipo de educación:</span>
                   {editable ? (
                     <select class="editable-field" data-field="EducationId">
@@ -239,11 +307,11 @@ try {
                       <option value="aeeb4d34-d95d-4b83-b282-26f14868a578" selected={contactData.data.EducationId === 'aeeb4d34-d95d-4b83-b282-26f14868a578'}>Secundario</option>
                     </select>
                   ) : (
-                    <span class="detail-value">
+              <span class="detail-value">
                       {contactData.data.EducationId === '9d0a8a05-caae-4cf6-b908-1fca85cea1d2' ? 'Doctorado' :
                        contactData.data.EducationId === 'aeeb4d34-d95d-4b83-b282-26f14868a578' ? 'Secundario' :
                        contactData.data.EducationId === 'a91d8067-80a1-4bca-9cfe-28d7aeb44a69' ? 'Universidad' : 'Not specified'}
-                    </span>
+              </span>
                   )}
                 </div>
               </div>
@@ -251,61 +319,6 @@ try {
           </div>
         </div>
 
-        <!-- Tab Financiera -->
-        <div class="tab-content" id="tab-financial">
-          <div class="contact-details">
-            <div class="detail-section">
-              <h3>Información Financiera</h3>
-              <div class="detail-grid">
-                <div class="detail-item">
-                  <span class="detail-label">💳 Credit Score:</span>
-                  {editable ? (
-                    <input type="number" class="editable-field" value={contactData.data.labCredScore || ''} data-field="labCredScore" placeholder="Enter credit score" min="300" max="850" />
-                  ) : (
-                    <span class="detail-value">{contactData.data.labCredScore || 'Not provided'}</span>
-                  )}
-                </div>
-                <div class="detail-item">
-                  <span class="detail-label">💰 Ingresos mensuales:</span>
-                  {editable ? (
-                    <input type="number" class="editable-field" value={contactData.data.labMonthlyInc || ''} data-field="labMonthlyInc" placeholder="Enter monthly income" min="0" step="0.01" />
-                  ) : (
-                    <span class="detail-value">
-                      {contactData.data.labMonthlyInc ? `$${contactData.data.labMonthlyInc.toLocaleString()}` : 'Not provided'}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab Familiar -->
-        <div class="tab-content" id="tab-family">
-          <div class="contact-details">
-            <div class="detail-section">
-              <h3>Información Familiar</h3>
-              <div class="detail-grid">
-                <div class="detail-item">
-                  <span class="detail-label">👥 Número de dependientes:</span>
-                  {editable ? (
-                    <input type="number" class="editable-field" value={contactData.data.NumberOfFamilyMembers || '0'} data-field="NumberOfFamilyMembers" placeholder="0" min="0" />
-                  ) : (
-                    <span class="detail-value">{contactData.data.NumberOfFamilyMembers || '0'}</span>
-                  )}
-                </div>
-                <div class="detail-item">
-                  <span class="detail-label">👶 Número de hijos:</span>
-                  {editable ? (
-                    <input type="number" class="editable-field" value={contactData.data.NumberOfChildren || '0'} data-field="NumberOfChildren" placeholder="0" min="0" />
-                  ) : (
-                    <span class="detail-value">{contactData.data.NumberOfChildren || '0'}</span>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <!-- Tab Documentos -->
         <div class="tab-content" id="tab-documents">
@@ -323,9 +336,7 @@ try {
                 </div>
                 <div class="uploaded-documents" id="uploadedDocuments"></div>
                 <div class="upload-actions">
-                  <button type="button" class="btn btn-primary" id="uploadBtn" style="display: none;">
-                    Subir Documentos
-                  </button>
+                  <p class="upload-info">Los documentos se subirán automáticamente al guardar los cambios</p>
                 </div>
               </div>
             </div>
@@ -714,6 +725,13 @@ try {
     margin-top: 20px;
     text-align: center;
   }
+
+  .upload-info {
+    color: #6c757d;
+    font-size: 14px;
+    font-style: italic;
+    margin: 0;
+  }
 </style>
 
 <script>
@@ -833,8 +851,21 @@ try {
           const result = await response.json();
           console.log('Respuesta de la API:', result);
           
+          // Subir documentos si los hay
+          let documentMessage = '';
+          if (window.uploadDocuments) {
+            const uploadResult = await window.uploadDocuments(contactId);
+            console.log('Resultado de subida de documentos:', uploadResult);
+            if (uploadResult.success) {
+              documentMessage = uploadResult.message;
+            }
+          }
+          
           // Mostrar mensaje de éxito
-          alert('¡Información del contacto actualizada exitosamente!');
+          const successMessage = documentMessage ? 
+            `¡Información del contacto actualizada exitosamente! ${documentMessage}` : 
+            '¡Información del contacto actualizada exitosamente!';
+          alert(successMessage);
           
           // Actualizar valores originales
           editableFields.forEach(field => {
@@ -871,19 +902,57 @@ try {
     }
   }
 
+  // Variable global para los archivos seleccionados
+  let selectedFiles = [];
+
+  // Función para mostrar el botón de guardar
+  function showSaveButton() {
+    const saveBtn = document.getElementById('saveBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    if (saveBtn) saveBtn.style.display = 'block';
+    if (cancelBtn) cancelBtn.style.display = 'block';
+  }
+
+  // Función para ocultar el botón de guardar si no hay cambios
+  function hideSaveButtonIfNoChanges() {
+    const saveBtn = document.getElementById('saveBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    
+    // Verificar si hay cambios en los campos editables
+    const editableFields = document.querySelectorAll('.editable-field');
+    const hasFieldChanges = Array.from(editableFields).some(field => {
+      const fieldName = field.dataset.field;
+      const originalValue = originalValues[fieldName] || '';
+      return field.value !== originalValue;
+    });
+    
+    // Si no hay cambios en campos ni documentos, ocultar botones
+    if (!hasFieldChanges && selectedFiles.length === 0) {
+      if (saveBtn) saveBtn.style.display = 'none';
+      if (cancelBtn) cancelBtn.style.display = 'none';
+    }
+  }
+
   // Funcionalidad de carga de documentos
   function setupDocumentUpload() {
     const uploadArea = document.getElementById('documentUploadArea');
     const fileInput = document.getElementById('documents');
     const uploadedDocuments = document.getElementById('uploadedDocuments');
-    const uploadBtn = document.getElementById('uploadBtn');
 
-    if (!uploadArea || !fileInput || !uploadedDocuments || !uploadBtn) return;
+    console.log('Elementos encontrados:', { uploadArea, fileInput, uploadedDocuments });
 
-    let selectedFiles = [];
+    if (!uploadArea || !fileInput || !uploadedDocuments) {
+      console.error('No se encontraron todos los elementos necesarios para la carga de documentos');
+      return;
+    }
 
-    // Click to upload
-    uploadArea.addEventListener('click', () => {
+    // Click to upload - siempre funciona
+    uploadArea.addEventListener('click', (e) => {
+      console.log('Click en área de carga');
+      // Prevenir propagación si el click es en el input file
+      if (e.target === fileInput) {
+        return;
+      }
       fileInput.click();
     });
 
@@ -906,6 +975,7 @@ try {
 
     // File input change
     fileInput.addEventListener('change', (e) => {
+      console.log('Archivos seleccionados:', e.target.files);
       handleFiles(e.target.files);
     });
 
@@ -926,9 +996,9 @@ try {
         addDocumentToList(file);
       });
 
-      // Mostrar botón de subir si hay archivos
+      // Mostrar botón de guardar si hay archivos
       if (selectedFiles.length > 0) {
-        uploadBtn.style.display = 'block';
+        showSaveButton();
       }
     }
 
@@ -958,34 +1028,33 @@ try {
       button.parentElement.remove();
       selectedFiles = selectedFiles.filter(file => file.name !== fileName);
       
+      // Ocultar botón si no hay archivos ni cambios
       if (selectedFiles.length === 0) {
-        uploadBtn.style.display = 'none';
+        hideSaveButtonIfNoChanges();
       }
     };
 
-    // Botón de subir documentos
-    uploadBtn.addEventListener('click', async () => {
+
+    // Función para subir documentos (llamada desde el botón Guardar)
+    window.uploadDocuments = async function(contactId) {
+      console.log('Iniciando subida de documentos desde botón Guardar. Archivos:', selectedFiles.length);
+      
       if (selectedFiles.length === 0) {
-        alert('No hay archivos para subir');
-        return;
+        console.log('No hay documentos para subir');
+        return { success: true, message: 'No hay documentos para subir' };
       }
 
-      uploadBtn.disabled = true;
-      uploadBtn.textContent = 'Subiendo...';
-
       try {
-        const contactId = getContactIdFromUrl();
-        if (!contactId) {
-          throw new Error('No se pudo obtener el ID del contacto de la URL');
-        }
-
+        let uploadedCount = 0;
+        
         // Procesar cada archivo
         for (const file of selectedFiles) {
+          console.log('Procesando archivo:', file.name);
           const base64Content = await convertToBase64(file);
           
           console.log('Enviando documento a la API:', {
             contact_id: contactId,
-            pdf_content: base64Content
+            pdf_content: base64Content.substring(0, 50) + '...' // Solo mostrar los primeros 50 caracteres
           });
 
           const response = await fetch('https://h9hl7f2ijf.execute-api.us-east-1.amazonaws.com/dev/document', {
@@ -1005,23 +1074,27 @@ try {
 
           const result = await response.json();
           console.log('Respuesta de la API para', file.name, ':', result);
+          uploadedCount++;
         }
 
-        alert('¡Documentos subidos exitosamente!');
-        
-        // Limpiar lista
+        // Limpiar lista después de subir exitosamente
         selectedFiles = [];
-        uploadedDocuments.innerHTML = '';
-        uploadBtn.style.display = 'none';
+        const uploadedDocuments = document.getElementById('uploadedDocuments');
+        if (uploadedDocuments) {
+          uploadedDocuments.innerHTML = '';
+        }
+
+        // Ocultar botón si no hay más cambios
+        hideSaveButtonIfNoChanges();
+
+        console.log(`Documentos subidos exitosamente: ${uploadedCount}`);
+        return { success: true, message: `${uploadedCount} documentos subidos exitosamente` };
 
       } catch (error) {
         console.error('Error uploading documents:', error);
-        alert('Error al subir los documentos. Por favor intenta de nuevo.');
-      } finally {
-        uploadBtn.disabled = false;
-        uploadBtn.textContent = 'Subir Documentos';
+        return { success: false, message: 'Error al subir los documentos: ' + error.message };
       }
-    });
+    };
 
     // Función para convertir archivo a base64
     function convertToBase64(file) {
